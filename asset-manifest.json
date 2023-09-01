@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/PassGen/static/css/main.d087a419.css",
+    "main.js": "/PassGen/static/js/main.412eec9e.js",
+    "static/js/787.88bfb74c.chunk.js": "/PassGen/static/js/787.88bfb74c.chunk.js",
+    "static/media/password-gen-form-header.jpg": "/PassGen/static/media/password-gen-form-header.0d2a21398073696ae9b7.jpg",
+    "static/media/nxlogo.png": "/PassGen/static/media/nxlogo.3b6a606d72e1866cf111.png",
+    "index.html": "/PassGen/index.html",
+    "main.d087a419.css.map": "/PassGen/static/css/main.d087a419.css.map",
+    "main.412eec9e.js.map": "/PassGen/static/js/main.412eec9e.js.map",
+    "787.88bfb74c.chunk.js.map": "/PassGen/static/js/787.88bfb74c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d087a419.css",
+    "static/js/main.412eec9e.js"
+  ]
+}
