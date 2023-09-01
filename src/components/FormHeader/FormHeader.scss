@@ -14,7 +14,7 @@ $password-gen-header-background: url("../../../public/images/password-gen-form-h
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-    color: #ffffff;
+    color: $secondary-color;
 
     & .password-gen-title,
     & p {

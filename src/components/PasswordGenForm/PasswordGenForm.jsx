@@ -11,7 +11,7 @@ import "./PasswordGenForm.scss";
 
 function PasswordGenForm() {
   const [generatedPassword, setGeneratedPassword] = useState("");
-  const [isIncludeLowercase, setIsIncludeLowerCase] = useState(false);
+  const [isIncludeLowercase, setIsIncludeLowerCase] = useState(true);
   const [isIncludeUppercase, setIsIncludeUppercase] = useState(false);
   const [isIncludeNumbers, setIsIncludeNumbers] = useState(false);
   const [isIncludeSymbols, setIsIncludeSymbols] = useState(false);
