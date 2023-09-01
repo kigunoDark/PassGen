@@ -1,0 +1,46 @@
+@import "../../constants.scss";
+
+$secondary-color: #ffffff;
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    font-weight: bold;
+    color: $secondary-color;
+    margin-bottom: 12px;
+
+    input[type="checkbox"] {
+        display: none;
+    }
+
+    .checkmark {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 2px solid $secondary-color;
+        border-radius: 3px;
+        margin-right: 10px;
+        position: relative;
+        transition: border-color 0.3s ease;
+
+        .checkbox-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 14px;
+        }
+    }
+
+    input[type="checkbox"]:checked+.checkmark {
+        border-color: $primary-color;
+        background-color: $primary-color;
+
+        .checkbox-icon {
+            display: block;
+            color: $secondary-color;
+        }
+    }
+}

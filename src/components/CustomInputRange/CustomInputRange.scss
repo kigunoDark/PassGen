@@ -1,0 +1,19 @@
+$password-gen-length-input-input-margin-top: 40px;
+$password-gen-length-input-text-color: #ffffff;
+$password-gen-length-input-font-weight: bold;
+
+.password-gen-length-input {
+    input {
+        margin-top: $password-gen-length-input-input-margin-top;
+        cursor: pointer;
+        width: 100%;
+        color: $password-gen-length-input-text-color;
+        font-weight: $password-gen-length-input-font-weight;
+    }
+
+    p {
+        width: 100%;
+        color: $password-gen-length-input-text-color;
+        font-weight: $password-gen-length-input-font-weight;
+    }
+}
