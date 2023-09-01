@@ -1,11 +1,11 @@
-import { useEffect, useState, useRef } from "react";
-import CheckboxMenu from "../CheckboxMenu/CheckboxMenu";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCopy } from "@fortawesome/free-solid-svg-icons";
+import { useState, useRef } from "react";
 import FormHeader from "../FormHeader/FormHeader";
+import CheckboxMenu from "../CheckboxMenu/CheckboxMenu";
 import CustomInputRange from "../CustomInputRange/CustomInputRange";
 import passwordGenerator from "./PasswordGenForm.helpers";
+import PasswordGenInput from "./PasswordGenInput/PasswordGenInput";
 import { toast } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
 import "./PasswordGenForm.scss";
 
@@ -17,18 +17,17 @@ function PasswordGenForm() {
   const [isIncludeSymbols, setIsIncludeSymbols] = useState(false);
   const [passwordLength, setPasswordLength] = useState(8);
   const passwordInputRef = useRef(null);
-  const [error, setError] = useState("");
 
   const submitGeneratePassword = () => {
-    setError({});
     const password = passwordGenerator(
       isIncludeUppercase,
       isIncludeLowercase,
       isIncludeNumbers,
       isIncludeSymbols,
-      setError,
-      passwordLength
+      passwordLength,
+      toast
     );
+
     setGeneratedPassword(password);
     if (password) toast.success("The password has been generated");
   };
@@ -45,30 +44,15 @@ function PasswordGenForm() {
     }
   };
 
-  const handleIncludeLowercaseChange = () => {
-    setIsIncludeLowerCase(!isIncludeLowercase);
-  };
+  const handleIncludeLowercaseChange = () => setIsIncludeLowerCase(!isIncludeLowercase);
 
-  const handleIncludeUppercaseChange = () => {
-    setIsIncludeUppercase(!isIncludeUppercase);
-  };
+  const handleIncludeUppercaseChange = () => setIsIncludeUppercase(!isIncludeUppercase);
 
-  const handleIsIncludeNumbers = () => {
-    setIsIncludeNumbers(!isIncludeNumbers);
-  };
+  const handleIsIncludeNumbers = () =>setIsIncludeNumbers(!isIncludeNumbers);
 
-  const handleIncludeSymbolsChange = () => {
-    setIsIncludeSymbols(!isIncludeSymbols);
-  };
+  const handleIncludeSymbolsChange = () => setIsIncludeSymbols(!isIncludeSymbols);
 
-  const handlePasswordLengthChange = (event) => {
-    setPasswordLength(parseInt(event.target.value));
-  };
-
-  useEffect(() => {
-    if (error.length) toast.error(error);
-    setError("");
-  }, [error]);
+  const handlePasswordLengthChange = (event) => setPasswordLength(parseInt(event.target.value));
 
   const CHECKBOX_MENU_LIST = [
     {
@@ -96,6 +80,7 @@ function PasswordGenForm() {
       onCheckboxChange: handleIncludeSymbolsChange,
     },
   ];
+  console.log("test");
 
   return (
     <div className="password-gen-plane">
@@ -104,21 +89,11 @@ function PasswordGenForm() {
         subtitle={"Generate password in a seconds"}
       />
 
-      <div className="password-gen-input">
-        <input
-          type="text"
-          ref={passwordInputRef}
-          id="password-input"
-          value={generatedPassword}
-          placeholder="Generate password"
-          readOnly
-        />
-        <FontAwesomeIcon
-          className="password-gen-copy-icon"
-          icon={faCopy}
-          onClick={copyPassword}
-        />
-      </div>
+      <PasswordGenInput
+        passwordInputRef={passwordInputRef}
+        generatedPassword={generatedPassword}
+        copyPassword={copyPassword}
+      />
 
       <CustomInputRange
         min={4}
