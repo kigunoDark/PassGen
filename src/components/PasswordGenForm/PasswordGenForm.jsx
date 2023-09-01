@@ -7,6 +7,7 @@
  * <PasswordGenForm />
  */
 
+import React from 'react';
 import { useState, useRef } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
