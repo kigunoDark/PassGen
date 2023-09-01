@@ -1,3 +1,4 @@
+import React from "react";
 import PasswordGenForm from "./components/PasswordGenForm/PasswordGenForm.jsx";
 import { ToastContainer } from "react-toastify";
 
