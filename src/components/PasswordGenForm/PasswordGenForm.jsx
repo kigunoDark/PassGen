@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import CheckboxMenu from "../CheckboxMenu/CheckboxMenu";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy } from "@fortawesome/free-solid-svg-icons";
@@ -16,6 +16,7 @@ function PasswordGenForm() {
   const [isIncludeNumbers, setIsIncludeNumbers] = useState(false);
   const [isIncludeSymbols, setIsIncludeSymbols] = useState(false);
   const [passwordLength, setPasswordLength] = useState(8);
+  const passwordInputRef = useRef(null);
   const [error, setError] = useState("");
 
   const submitGeneratePassword = () => {
@@ -32,11 +33,16 @@ function PasswordGenForm() {
     if (password) toast.success("The password has been generated");
   };
 
-  const copyPassword = () => {
-    const passwordInput = document.getElementById("password-input");
-    passwordInput.select();
-    document.execCommand("copy");
-    toast.success("You have copied the password successfully");
+  const copyPassword = async () => {
+    const passwordInput = passwordInputRef.current;
+    if (passwordInput) {
+      try {
+        await navigator.clipboard.writeText(passwordInput.value);
+        toast.success("You have copied the password successfully");
+      } catch (err) {
+        toast.error("Failed to copy password:", err);
+      }
+    }
   };
 
   const handleIncludeLowercaseChange = () => {
@@ -97,6 +103,7 @@ function PasswordGenForm() {
       <div className="password-gen-input">
         <input
           type="text"
+          ref={passwordInputRef}
           id="password-input"
           value={generatedPassword}
           placeholder="Generate password"

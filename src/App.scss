@@ -18,6 +18,11 @@ $animation-duration: 20s;
   &-link {
     color: $link-color;
   }
+
+  .login-page {
+    margin-top: 50px;
+    color: #ffffff;
+  }
 }
 
 @keyframes App-logo-spin {

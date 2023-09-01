@@ -12,9 +12,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" exact element={<PasswordGenForm />} />
-          <Route path="/login" element={<div>Login </div>} />
+          <Route path="/login" element={<div className="login-page">Login should be here :). However, I can use Routes :P </div>} />
         </Routes>
-
         <ToastContainer theme="dark" position="bottom-left" autoClose={1500} />
       </div>
     </Router>
