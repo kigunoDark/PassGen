@@ -1,12 +1,21 @@
+/**
+ * React component for generating passwords and copying them to the clipboard.
+ *
+ * @component
+ * @example
+ * // Usage of PasswordGenForm component:
+ * <PasswordGenForm />
+ */
+
 import { useState, useRef } from "react";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import FormHeader from "../FormHeader/FormHeader";
 import CheckboxMenu from "../CheckboxMenu/CheckboxMenu";
 import CustomInputRange from "../CustomInputRange/CustomInputRange";
-import passwordGenerator from "./PasswordGenForm.helpers";
-import PasswordGenInput from "./PasswordGenInput/PasswordGenInput";
-import { toast } from "react-toastify";
+import generatePassword from "./PasswordGenForm.helpers";
+import PasswordGenInput from "./CopyToClipboardInput/CopyToClipboardInput";
 
-import "react-toastify/dist/ReactToastify.css";
 import "./PasswordGenForm.scss";
 
 function PasswordGenForm() {
@@ -18,18 +27,21 @@ function PasswordGenForm() {
   const [passwordLength, setPasswordLength] = useState(8);
   const passwordInputRef = useRef(null);
 
-  const submitGeneratePassword = () => {
-    const password = passwordGenerator(
-      isIncludeUppercase,
-      isIncludeLowercase,
-      isIncludeNumbers,
-      isIncludeSymbols,
-      passwordLength,
-      toast
-    );
-
-    setGeneratedPassword(password);
-    if (password) toast.success("The password has been generated");
+  const submitGeneratePassword = (event) => {
+    event.preventDefault();
+    try {
+      const password = generatePassword({
+        passwordLength,
+        isIncludeUppercase,
+        isIncludeLowercase,
+        isIncludeNumbers,
+        isIncludeSymbols,
+      });
+      setGeneratedPassword(password);
+      toast.success("The password has been generated");
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   const copyPassword = async () => {
@@ -44,17 +56,21 @@ function PasswordGenForm() {
     }
   };
 
-  const handleIncludeLowercaseChange = () => setIsIncludeLowerCase(!isIncludeLowercase);
+  const handleIncludeLowercaseChange = () =>
+    setIsIncludeLowerCase(!isIncludeLowercase);
 
-  const handleIncludeUppercaseChange = () => setIsIncludeUppercase(!isIncludeUppercase);
+  const handleIncludeUppercaseChange = () =>
+    setIsIncludeUppercase(!isIncludeUppercase);
 
-  const handleIsIncludeNumbers = () =>setIsIncludeNumbers(!isIncludeNumbers);
+  const handleIsIncludeNumbers = () => setIsIncludeNumbers(!isIncludeNumbers);
 
-  const handleIncludeSymbolsChange = () => setIsIncludeSymbols(!isIncludeSymbols);
+  const handleIncludeSymbolsChange = () =>
+    setIsIncludeSymbols(!isIncludeSymbols);
 
-  const handlePasswordLengthChange = (event) => setPasswordLength(parseInt(event.target.value));
+  const handlePasswordLengthChange = (event) =>
+    setPasswordLength(parseInt(event.target.value));
 
-  const CHECKBOX_MENU_LIST = [
+  const checkbox_menu_list = [
     {
       id: 1,
       label: "Include Lowercase",
@@ -80,10 +96,9 @@ function PasswordGenForm() {
       onCheckboxChange: handleIncludeSymbolsChange,
     },
   ];
-  console.log("test");
 
   return (
-    <div className="password-gen-plane">
+    <form className="password-gen-plane" onSubmit={submitGeneratePassword}>
       <FormHeader
         title={"Password Generator"}
         subtitle={"Generate password in a seconds"}
@@ -99,12 +114,12 @@ function PasswordGenForm() {
         min={4}
         max={20}
         value={passwordLength}
-        onChange={handlePasswordLengthChange}
         label={`Password Length: ${passwordLength}`}
+        onChange={handlePasswordLengthChange}
       />
 
       <div className="password-gen-block">
-        {CHECKBOX_MENU_LIST.map((checkboxMenuItem) => (
+        {checkbox_menu_list.map((checkboxMenuItem) => (
           <CheckboxMenu
             key={checkboxMenuItem.id}
             label={checkboxMenuItem.label}
@@ -114,10 +129,10 @@ function PasswordGenForm() {
         ))}
       </div>
 
-      <button className="password-gen-button" onClick={submitGeneratePassword}>
+      <button className="password-gen-button" type="submit">
         Generate
       </button>
-    </div>
+    </form>
   );
 }
 
