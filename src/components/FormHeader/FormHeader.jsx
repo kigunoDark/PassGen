@@ -5,7 +5,7 @@ import "./FormHeader.scss";
 function FormHeader({ title, subtitle }) {
   return (
     <div className="password-gen-header">
-      <h2 className="password-gen-title">{title}</h2>
+      <h2>{title}</h2>
       <p>{subtitle}</p>
     </div>
   );
