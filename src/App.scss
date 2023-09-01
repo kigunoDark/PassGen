@@ -5,7 +5,7 @@ $animation-duration: 20s;
 .App {
   text-align: center;
   background: $background-color;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 
@@ -22,6 +22,21 @@ $animation-duration: 20s;
   .login-page {
     margin-top: 50px;
     color: $secondary-color;
+  }
+
+  @media (max-width: 768px) {
+    padding: 20px;
+
+    &-logo {
+
+      width: 100px;
+      height: 100px;
+    }
+
+    .login-page {
+      margin-top: 20px;
+      font-size: 16px;
+    }
   }
 }
 

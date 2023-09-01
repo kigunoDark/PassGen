@@ -41,4 +41,28 @@
             color: $secondary-color;
         }
     }
+
+    @media (max-width: 768px) {
+        .checkmark {
+            width: 18px;
+            height: 18px;
+            margin-right: 8px;
+
+            .checkbox-icon {
+                font-size: 12px;
+            }
+        }
+    }
+
+    @media (max-width: 480px) {
+        .checkmark {
+            width: 16px;
+            height: 16px;
+            margin-right: 6px;
+
+            .checkbox-icon {
+                font-size: 10px;
+            }
+        }
+    }
 }

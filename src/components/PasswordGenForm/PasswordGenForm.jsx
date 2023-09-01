@@ -72,21 +72,25 @@ function PasswordGenForm() {
 
   const CHECKBOX_MENU_LIST = [
     {
+      id: 1,
       label: "Include Lowercase",
       isChecked: isIncludeLowercase,
       onCheckboxChange: handleIncludeLowercaseChange,
     },
     {
+      id: 2,
       label: "Include Uppercase",
       isChecked: isIncludeUppercase,
       onCheckboxChange: handleIncludeUppercaseChange,
     },
     {
+      id: 3,
       label: "Include Numbers",
       isChecked: isIncludeNumbers,
       onCheckboxChange: handleIsIncludeNumbers,
     },
     {
+      id: 4,
       label: "Include Symbols",
       isChecked: isIncludeSymbols,
       onCheckboxChange: handleIncludeSymbolsChange,
@@ -127,6 +131,7 @@ function PasswordGenForm() {
       <div className="password-gen-block">
         {CHECKBOX_MENU_LIST.map((checkboxMenuItem) => (
           <CheckboxMenu
+            key={checkboxMenuItem.id}
             label={checkboxMenuItem.label}
             isChecked={checkboxMenuItem.isChecked}
             onCheckboxChange={checkboxMenuItem.onCheckboxChange}

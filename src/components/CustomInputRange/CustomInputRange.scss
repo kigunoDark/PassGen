@@ -16,4 +16,24 @@ $password-gen-length-input-font-weight: bold;
         color: $password-gen-length-input-text-color;
         font-weight: $password-gen-length-input-font-weight;
     }
+
+    @media (max-width: 768px) {
+        input {
+            font-size: 16px;
+        }
+
+        p {
+            font-size: 16px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        input {
+            font-size: 14px;
+        }
+
+        p {
+            font-size: 14px;
+        }
+    }
 }
